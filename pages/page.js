@@ -161,7 +161,7 @@ export default function Home({ person }) {
     )
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
     const res = await fetch('https://randomuser.me/api/')
     const persons = await res.json()
     const person = persons.results[0]
@@ -169,9 +169,5 @@ export async function getStaticProps() {
         props: {
             person,
         },
-        // Next.js will attempt to re-generate the page:
-        // - When a request comes in
-        // - At most once every second
-        revalidate: 10, // In seconds
     }
 }
